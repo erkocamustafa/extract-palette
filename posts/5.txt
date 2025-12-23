@@ -1,0 +1,26 @@
+RGB vs CMYK: What's the Difference?
+Technical
+linear-gradient(135deg, #111111, #333333)
+---
+<p>We’ve all been there. You create a beautiful poster design on your computer. The bright blues glow, the pinks pop. You click "Print," go fetch the paper, and... yuck.</p>
+
+<p>What just happened? You just fell prey to the laws of physics. Namely, the difference between <strong>Light</strong> and <strong>Ink</strong>.</p>
+
+<h2>RGB: Designing with Light</h2>
+<p>Phones, computers, and TVs are designed with lightbulbs using the <strong>RGB</strong> (Red, Green, Blue) color system. This technology works by projecting light directly into your eyeballs.</p>
+
+<p>Because this is "additive color," it is possible to create extremely bright, intense neon colors that seem to glow. When you mix all these colors together, you get pure White.</p>
+
+<h2>CMYK: Designing with Ink</h2>
+<p>Printers break down colors into <strong>CMYK</strong> (Cyan, Magenta, Yellow, and Key/Black). Unlike screens, paper doesn't glow; it reflects light. Ink absorbs light.</p>
+
+<p>You are working with physical pigments, which severely limits the "gamut" (the range of colors that can be produced). In simple terms: <strong>A Printer Can’t Print Light.</strong> It can’t replicate that electric neon blue you see on your iPhone screen because no ink glows in the dark.</p>
+
+<h2>The Golden Rule</h2>
+<p>Always know your destination before you open your design tool:</p>
+<ul>
+    <li><strong>Is it for a screen?</strong> (Web App, Instagram, UI) -> Use <strong>RGB</strong>.</li>
+    <li><strong>Is it for print?</strong> (Business card, Poster, Merch) -> Set your file to <strong>CMYK</strong> immediately.</li>
+</ul>
+
+<p>If you wait to convert RGB to CMYK at the very end, the software will try to approximate the colors, resulting in that muddy, dull effect. Start with the right color mode, and you will never be surprised by a bad print again.</p>

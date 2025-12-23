@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ post.title }} | ExtractPalette</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+</head>
+<body style="overflow-y: auto;"> 
+
+    <nav class="navbar">
+        <div class="logo">
+            <a href="/" class="logo-link">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Extract Palette Logo" class="nav-logo-img">
+                <span>Extract Palette</span>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="/" class="nav-item">Home</a>
+            <a href="/inspiration" class="nav-item active">Ideas & Blog</a>
+            <div class="social-icons">
+                <a href="https://instagram.com/extract.palette/" target="_blank" class="social-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                </a>
+                <a href="https://tiktok.com/@extract.palette/" target="_blank" class="social-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="article-container">
+        <a href="/inspiration" class="back-btn">← Back to Stories</a>
+        
+        <header class="article-header">
+            <span class="article-tag">{{ post.tag }}</span>
+            <h1 class="article-title">{{ post.title }}</h1>
+            <div class="article-meta">
+                <span>By ExtractPalette Team</span> • <span>{{ post.read_time }}</span>
+            </div>
+        </header>
+
+        <div class="article-image" style="background: {{ post.gradient }};"></div>
+
+        <div class="article-body">
+            {{ post.content | safe }}
+        </div>
+        
+        <div style="margin-top: 50px; text-align:center; padding-top: 30px; border-top: 1px solid #e2e8f0;">
+            <p style="color:#64748b; margin-bottom: 20px;">Inspired by this story?</p>
+            <a href="/" class="btn btn-primary">Extract Your Own Palette</a>
+        </div>
+    </div>
+</body>
+</html>

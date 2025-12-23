@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Extract beautiful color palettes from images instantly. Free tool for designers, developers, and creators. Get CSS, Tailwind, and JSON codes.">
+    <title>Extract Palette | Free Color Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Extract Palette Logo" class="nav-logo-img">
+    <span>Extract Palette</span>
+</div> 
+        <div class="nav-links">
+            <a href="/inspiration" class="nav-item">Ideas & Blog</a> 
+            <a href="#" class="nav-item" onclick="openModal('howItWorksModal')">How it works</a>
+            
+            <div class="social-icons">
+                <a href="https://instagram.com/extract.palette/" target="_blank" class="social-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                </a>
+                <a href="https://tiktok.com/@extract.palette" target="_blank" class="social-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="split-screen">
+        <div class="panel-left" id="dropZone">
+            <div class="upload-area" id="uploadState">
+                <div class="icon" style="font-size: 32px; margin-bottom: 10px;">📂</div>
+                <h3>Drag & Drop Image</h3>
+                <p>or click to browse</p>
+                <input type="file" id="fileInput" accept="image/*" hidden>
+            </div>
+            <div class="preview-area hidden" id="previewState">
+                <img src="" id="sourceImage" alt="Analyzed Image">
+                <div class="image-meta">
+                    <span id="imgWidth">0</span> x <span id="imgHeight">0</span> px
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-right">
+            <div class="content-wrapper">
+                
+                <div class="top-row">
+                    <div class="colors-section">
+                        <div class="section-header"><label>PALETTE</label></div>
+                        <div class="color-grid" id="colorGrid">
+                            <div class="color-box skeleton"></div><div class="color-box skeleton"></div><div class="color-box skeleton"></div><div class="color-box skeleton"></div><div class="color-box skeleton"></div>
+                        </div>
+                    </div>
+                    <div class="average-section">
+                        <div class="section-header"><label>AVG. TINT</label></div>
+                        <div class="mini-avg-wrapper" id="avgWrapper">
+                            <div class="color-circle skeleton" id="avgColorBox"></div>
+                            <span id="avgHex">#---</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section details-grid">
+                    <div class="detail-card">
+                        <div class="section-header"><label>BEST FOR</label></div>
+                        <p id="usageText" class="text-blur">Waiting...</p>
+                    </div>
+                    <div class="detail-card">
+                        <div class="section-header"><label>CONTRAST</label></div>
+                        <p id="contrastText" class="text-blur">Waiting...</p>
+                    </div>
+                </div>
+
+                <div class="tools-grid">
+                    <div class="tool-col">
+                        <div class="section-header"><label>AUTO GRADIENT</label></div>
+                        <div class="tool-box">
+                            <div class="grad-preview" id="gradientPreview"></div>
+                            <div class="grad-actions">
+                                <code id="gradientCode">linear-gradient(...)</code>
+                                <button class="mini-icon-btn" onclick="copyGradient()" title="Copy CSS">📋</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tool-col">
+                        <div class="section-header">
+                            <label>EXPORT</label>
+                            <div class="mini-tabs">
+                                <span class="m-tab active" onclick="switchTab('css', this)">CSS</span>
+                                <span class="m-tab" onclick="switchTab('tailwind', this)">Tailwind</span>
+                                <span class="m-tab" onclick="switchTab('json', this)">JSON</span>
+                            </div>
+                        </div>
+                        <div class="tool-box dark" style="position:relative;">
+                            <pre id="codeOutput">/* Code... */</pre>
+                            <button class="mini-copy-btn" onclick="copyCodeBlock()">Copy</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="action-btn btn-reset" id="resetBtn">
+                        <span>↺</span> Reset Image
+                    </button>
+                    <button class="action-btn btn-download-large" onclick="downloadPaletteImage()">
+                        <span>⬇</span> Download Palette
+                    </button>
+                </div>
+
+                <div id="monetizationSpace" style="margin-top: 25px; display:flex; justify-content:center;">
+                   <a href="#" style="background: #FFDD00; color: #000; padding: 8px 15px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 13px; display: flex; flex-direction: column; align-items: center; gap: 0px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s;">
+                       <div style="display: flex; align-items: center; gap: 6px;">
+                           <span>☕</span> Buy me a coffee
+                       </div>
+                       <span style="font-size: 11px; font-weight: 400; color: rgba(0,0,0,0.6);">student developer</span>
+                   </a>
+                </div>
+
+            </div>
+
+            <div class="footer-links">
+                <a href="#" onclick="openModal('privacyModal')">Privacy</a>
+                <span>•</span>
+                <a href="#" onclick="openModal('termsModal')">Terms</a>
+                <span>•</span>
+                <a href="mailto:atlasivo.content@gmail.com">Contact</a>
+                <p class="copyright">&copy; 2025 Extract Palette</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="colorPopover" class="popover">
+        <div class="popover-header">
+            <div class="popover-color-preview" id="popColorPreview"></div>
+            <span class="popover-title">Details</span>
+            <button class="close-popover" onclick="closePopover()">×</button>
+        </div>
+        <div class="popover-body">
+            <div class="pop-row"><span class="label">HEX</span><span class="value" id="popHex">#---</span><button class="mini-copy" onclick="copyFromPop('hex')">Copy</button></div>
+            <div class="pop-row"><span class="label">RGB</span><span class="value" id="popRgb">---</span><button class="mini-copy" onclick="copyFromPop('rgb')">Copy</button></div>
+        </div>
+    </div>
+
+    <div id="howItWorksModal" class="modal-overlay">
+        <div class="modal-content">
+            <h2>How it works? ⚡</h2>
+            <div class="steps">
+                <div class="step"><span>1</span> <p><strong>Upload:</strong> Drag & drop any image.</p></div>
+                <div class="step"><span>2</span> <p><strong>Analyze:</strong> Tool finds dominant colors.</p></div>
+                <div class="step"><span>3</span> <p><strong>Export:</strong> Copy CSS/Tailwind codes.</p></div>
+            </div>
+            <button class="btn btn-primary full-width" onclick="closeModal('howItWorksModal')">Got it!</button>
+        </div>
+    </div>
+
+    <div id="privacyModal" class="modal-overlay">
+        <div class="modal-content">
+            <h2>Privacy Policy 🔒</h2>
+            <p style="font-size:13px; color:#64748b; line-height:1.6;">
+                We respect your privacy. <strong>ExtractPalette does not store your images.</strong><br><br>
+                1. All processing happens in the server's RAM and is deleted immediately.<br>
+                2. We do not share your data with third parties.<br>
+                3. We use cookies only for basic site functionality.
+            </p>
+            <br>
+            <button class="btn btn-secondary full-width" onclick="closeModal('privacyModal')">Close</button>
+        </div>
+    </div>
+
+    <div id="termsModal" class="modal-overlay">
+        <div class="modal-content">
+            <h2>Terms of Use 📄</h2>
+            <p style="font-size:13px; color:#64748b; line-height:1.6;">
+                By using ExtractPalette, you agree to the following:<br><br>
+                1. Use this tool for legal purposes only.<br>
+                2. Generated palettes are free to use in personal & commercial projects.<br>
+                3. We are not responsible for any copyright issues regarding uploaded images.
+            </p>
+            <br>
+            <button class="btn btn-secondary full-width" onclick="closeModal('termsModal')">Close</button>
+        </div>
+    </div>
+
+    <div id="toast" class="toast">Copied! 🚀</div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

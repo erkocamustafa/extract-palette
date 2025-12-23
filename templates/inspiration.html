@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore curated color palettes and design stories. Inspiration for your next web design or art project.">
+    <title>Inspiration & Blog | ExtractPalette</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body style="overflow-y: auto;"> 
+    
+    <nav class="navbar">
+        <div class="logo">
+            <a href="/" class="logo-link">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Extract Palette Logo" class="nav-logo-img">
+                <span>Extract Palette</span>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="/" class="nav-item">Home</a>
+            <a href="#" class="nav-item active">Ideas & Blog</a>
+            <div class="social-icons">
+                <a href="https://instagram.com/extract.palette/" target="_blank" class="social-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                </a>
+                <a href="https://tiktok.com/@extract.palette/" target="_blank" class="social-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>
+                </a>
+            </div>
+        </div>
+    </nav>  
+
+    <div class="blog-container">
+        <header class="blog-header">
+            <h1>Color Stories</h1>
+            <p>Design insights, history, and curated palettes.</p>
+        </header>
+
+        <div class="stories-grid">
+            {% for post in posts %}
+            <a href="/blog/{{ post.id }}" class="story-card">
+                <div class="story-cover" style="background: {{ post.gradient }};"></div>
+                <div class="story-content">
+                    <span class="story-tag">{{ post.tag }}</span>
+                    <h3>{{ post.title }}</h3>
+                    <p>Click to read more about this color story...</p>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

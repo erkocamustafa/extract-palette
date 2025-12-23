@@ -1,0 +1,26 @@
+Color Contrast & Accessibility
+Accessibility
+linear-gradient(135deg, #6366f1, #a5b4fc)
+---
+<p>In the design world, "Aesthetics" is often at war with "Usability." We designers swoon over subtle light-grey text on a white background. It looks elegant, minimalist, and expensive. But there is a massive issue with this trend: <strong>Can people actually read it?</strong></p>
+
+<h2>The "Sunny Day" Test</h2>
+<p>Accessibility isn't just about designing for people with permanent visual impairments (although that is crucial!). Think about a "situational disability."</p>
+
+<p>Picture this: You are standing outside in bright sunshine, checking your phone. The glare on your screen washes out the colors. If you are using low-contrast text, that app becomes literally invisible.</p>
+
+<p>Accessibility helps the visually impaired, but it also helps the tired student studying at 3 AM with dim eyes, or the person using a phone with a cracked screen.</p>
+
+<h2>Understanding Contrast Ratios</h2>
+<p>You don't need to guess. The Web Content Accessibility Guidelines (WCAG) specify exactly what makes text readable:</p>
+<ul>
+    <li><strong>AA Standard:</strong> A contrast ratio of at least <strong>4.5:1</strong> for normal text.</li>
+    <li><strong>AAA Standard:</strong> A ratio of <strong>7:1</strong> (the gold standard).</li>
+</ul>
+
+<h2>Don't Trust Your Eyes</h2>
+<p>Your monitor is probably a high-end, calibrated 4K screen. Your user's monitor might be 10 years old and dim. Do not make judgments based on your own perfect vision.</p>
+
+<p>There are tools like <strong>ExtractPalette</strong> or other contrast analyzers that assist you in figuring out if your background and text work together. As a general rule: <strong>If you have to squint to read it, fix it.</strong></p>
+
+<p>Inclusive design is good design. Your color selection determines who gets to use your product and who gets excluded from it.</p>

@@ -1,0 +1,43 @@
+5 Common Mistakes Developers Make When Designing Dark Mode
+UI & UX
+linear-gradient(135deg, #0f2027, #203a43, #2c5364)
+---
+<p>Dark mode has become a mandatory feature. From messaging apps to websites, users now expect a dark theme option. But simply flipping the colors from white to black doesn't work.</p>
+<p>As developers and designers, we often forget the subtle details that make a dark UI effective and comfortable. Here is how to fix the 5 most common mistakes.</p>
+
+<h2>1. Using Pure Black (#000000)</h2>
+<p>Many people assume dark mode backgrounds must be pitch black. That is a myth.</p>
+<ul>
+    <li><strong>The Problem:</strong> Pure black creates "smearing" (black smear) on OLED screens when scrolling. It also causes eye strain due to the extreme contrast with bright text.</li>
+    <li><strong>The Fix:</strong> Use a dark grey instead. Google’s Material Design recommends <code>#121212</code>. This softens the contrast and allows you to use shadows effectively.</li>
+</ul>
+
+<h2>2. Neglecting Saturation Levels</h2>
+<p>A bright blue that looks great on a white background will vibrate and look like "neon" on a dark background.</p>
+<ul>
+    <li><strong>The Problem:</strong> Highly saturated colors on dark surfaces create visual vibration, making text hard to read and causing fatigue.</li>
+    <li><strong>The Fix:</strong> "Desaturate" your primary colors. Use lighter, pastel tones (200-50 range in Material colors) to make the UI comfortable and accessible.</li>
+</ul>
+
+<h2>3. Using Pure White Text</h2>
+<p>Just like pure black backgrounds are bad, pure white text (<code>#FFFFFF</code>) on a dark background is also a mistake.</p>
+<ul>
+    <li><strong>The Problem:</strong> It creates a "halation" effect—where the white text appears to bleed into the dark background, making it look blurry or bold.</li>
+    <li><strong>The Fix:</strong> Use high-emphasis text at <strong>87% opacity</strong> (or light grey), and medium-emphasis text at <strong>60%</strong>. Save 100% white only for critical highlights.</li>
+</ul>
+
+<h2>4. Losing Depth (Elevation)</h2>
+<p>In light mode, we use shadows to show which element is on top. In dark mode, shadows are invisible against a dark background.</p>
+<ul>
+    <li><strong>The Problem:</strong> The UI looks flat. It becomes hard for the user to distinguish cards, buttons, and modals from the background.</li>
+    <li><strong>The Fix:</strong> Use "Light" to show depth. The higher the surface is, the lighter the grey should be. Instead of a shadow, a card should be slightly brighter (e.g., <code>#1E1E1E</code>) than the background (<code>#121212</code>).</li>
+</ul>
+
+<h2>5. Forgetting to Test in Real Environments</h2>
+<p>It's easy to design a dark mode on a high-end monitor in a well-lit office, but that's not where your users are.</p>
+<ul>
+    <li><strong>The Problem:</strong> What looks clear on your monitor might be invisible on a phone screen under sunlight or blindingly bright in a dark room.</li>
+    <li><strong>The Fix:</strong> Always test your design on actual mobile devices, both in daylight and in low-light conditions.</li>
+</ul>
+
+<p>Designing for dark mode isn't just about CSS variables; it's about color psychology and screen technology. Avoid these mistakes, and your product will be not only stylish but also accessible.</p>
