@@ -62,16 +62,16 @@ def process_image(image_stream, k=5):
     
     h_orig, w_orig = image.shape[:2]
 
-    if w_orig > 600:
-        new_h = int(h_orig * (600 / w_orig))
-        process_img = cv2.resize(image, (600, new_h), interpolation=cv2.INTER_AREA)
+    if w_orig > 300:
+        new_h = int(h_orig * (300 / w_orig))
+        process_img = cv2.resize(image, (300, new_h), interpolation=cv2.INTER_AREA)
     else:
         process_img = image
 
     search_k = 10 
     image_reshaped = process_img.reshape((process_img.shape[0] * process_img.shape[1], 3))
     
-    clt = KMeans(n_clusters=search_k, n_init=10)
+    clt = KMeans(n_clusters=search_k, n_init=1)
     clt.fit(image_reshaped)
     
     # --- YENİ EKLENEN KISIM: Yüzde Hesabı ---
